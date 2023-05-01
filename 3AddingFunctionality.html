@@ -36,6 +36,7 @@
         <h2 class="title">Add Items</h2>
         <form id="addForm" class="form-inline mb-3">
           <input type="text" class="form-control mr-2" id="item" />
+          <input type="text" name="" class="form-control mr-2" id="description" placeholder="Description...">
           <input
             type="submit"
             id="button"
@@ -99,6 +100,17 @@
 
         editBtn.appendChild(document.createTextNode('Edit'))
         li.appendChild(editBtn)
+
+
+        //adding description
+
+        let d=document.getElementById('description').value
+        console.log(d)
+        // d.appendChild(document.createTextNode(d))
+      li.append(' --> '+ d)
+     
+
+
       }
 
       //deleting items
@@ -114,6 +126,33 @@
       }
 
       }
+
+
+      //searching
+      let search=document.getElementById('filter')
+      let fin=document.getElementById('items')
+
+      search.addEventListener('keyup',removeItem)
+
+      function removeItem(e){
+        let text=e.target.value.toLowerCase()
+        // get list
+        let items=fin.getElementsByTagName('li')
+        console.log(text)
+
+        Array.from(items).forEach(function(item){
+            let itemName=item.firstChild.textContent
+            if(itemName.toLowerCase().indexOf(text)!=-1){
+                item.style.display='block'
+            }
+            else{
+                item.style.display='none'
+            }
+        })
+
+      }
+
+    
 
     </script>
   </body>
